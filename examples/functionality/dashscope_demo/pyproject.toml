@@ -1,0 +1,23 @@
+[project]
+name = "dashscope-demo"
+version = "0.1.0"
+description = "AgentScope DashScope TUI 交互演示"
+requires-python = ">=3.10"
+dependencies = [
+    # AgentScope 核心框架（通过 [tool.uv.sources] 指向本地可编辑安装）
+    "agentscope",
+    # 终端美化（TUI 渲染）
+    "rich>=13.0.0",
+    # YAML 配置文件解析
+    "pyyaml>=6.0",
+]
+
+[tool.uv.sources]
+# 以本地可编辑模式引用仓库根目录的 agentscope，避免从 PyPI 重复下载
+# agentscope 已包含 dashscope、tiktoken、openai 等依赖，无需重复声明
+agentscope = { path = "../../..", editable = true }
+
+[project.optional-dependencies]
+# 如需从 PyPI 安装 agentscope（非本地开发），运行：
+#   uv add agentscope
+# 然后删除 [tool.uv.sources] 中的 agentscope 行
